@@ -8,18 +8,24 @@
 
 # COMMAND ----------
 
-spark.sql("""
-CREATE OR REPLACE TABLE mbc_poc_unity_catalog.mbc_poc_schema.`z_한글테스트` AS 
-SELECT 
-    1 AS `순번`,
-    1000 AS `매출금액`
-""")
+# MAGIC %python
+# MAGIC spark.sql("""
+# MAGIC CREATE OR REPLACE TABLE mbc_poc_unity_catalog.mbc_poc_schema.`z_한글테스트` AS 
+# MAGIC SELECT 
+# MAGIC     1 AS `순번`,
+# MAGIC     1000 AS `매출금액`
+# MAGIC """)
 
 # COMMAND ----------
 
-spark.sql("""
-CREATE OR REPLACE TABLE mbc_poc_unity_catalog.mbc_poc_schema.`z_한글테스트(상세)#1` AS 
-SELECT 
-    1 AS `순번`,
-    1000 AS `매출금액#1`
-""")
+# MAGIC %python
+# MAGIC spark.sql("""
+# MAGIC CREATE OR REPLACE TABLE mbc_poc_unity_catalog.mbc_poc_schema.`z_한글테스트(상세)#1` AS 
+# MAGIC SELECT 
+# MAGIC     1 AS `순번`,
+# MAGIC     1000 AS `매출금액#1`
+# MAGIC """)
+
+# COMMAND ----------
+
+

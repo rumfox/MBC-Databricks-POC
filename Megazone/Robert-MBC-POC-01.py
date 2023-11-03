@@ -11,7 +11,24 @@ display(spark.sql("SHOW SCHEMAS"))
 # COMMAND ----------
 
 # MAGIC %sql 
-# MAGIC CREATE SCHEMA IF NOT EXISTS mbc_poc_sc COMMENT 'Schema For MBC Databricks POC' MANAGED LOCATION 's3://mbcinfo/poc/';
+# MAGIC
+# MAGIC select count(*) from tb_youtube_video
+
+# COMMAND ----------
+
+# MAGIC %fs ls 
+# MAGIC s3://databricks-workspace-stack-107c6-metastore-bucket/c0eb9d77-839a-4cdc-82d9-c7fc2465465b/tables/f939e272-d621-4f89-b572-841d3b61f42e
+
+# COMMAND ----------
+
+# MAGIC %fs ls  
+# MAGIC `s3://databricks-workspace-stack-107c6-metastore-bucket/c0eb9d77-839a-4cdc-82d9-c7fc2465465b/tables/f939e272-d621-4f89-b572-841d3b61f42e`
+
+# COMMAND ----------
+
+# MAGIC %sql 
+# MAGIC select * from delta.`s3://databricks-workspace-stack-107c6-metastore-bucket/c0eb9d77-839a-4cdc-82d9-c7fc2465465b/tables/f939e272-d621-4f89-b572-841d3b61f42e`
+# MAGIC limit 5 
 
 # COMMAND ----------
 
@@ -51,13 +68,17 @@ connection_properties = {
     "driver"  : "oracle.jdbc.OracleDriver"
 }
 
-query = "(SELECT * FROM mbceis.mbc_youtube_video WHERE VIDEO_ID like 'Jl9eLoNrHtg')"
+query = "(SELECT * FROM mbceis.mbc_youtube_video)"
 
 """select * from mbc_poc_unity_catalog.mbc_poc_schema.mbc_youtube_video
 where VIDEO_ID like 'Jl9eLoNrHtg';
 """
 df = spark.read.jdbc(url=jdbc_url, table=query, properties=connection_properties)
 df.show()
+
+# COMMAND ----------
+
+df.count()
 
 # COMMAND ----------
 
@@ -284,7 +305,14 @@ dbutils.fs.ls("s3://mbcinfo/json/video-channel.json")
 
 # MAGIC %sql
 # MAGIC
+# MAGIC select count(*) from json.`s3://mbcinfo/json/video-channel.json`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
 # MAGIC select * from json.`s3://mbcinfo/json/video-channel.json`
+# MAGIC limit 3 
 
 # COMMAND ----------
 
